@@ -1,0 +1,98 @@
+/* --- Contenedor Principal de la Vista --- */
+.player-view-container {
+  /* Fondo de cuadrícula cian sutil */
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 25px 25px;
+  background-color: #0d000f; /* Fondo base oscuro */
+  
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 150px; /* Espacio para que no se pegue al fondo */
+}
+
+/* --- Contenedor Flex (Layout) --- */
+.player-content {
+  display: flex;
+  gap: 25px; 
+  flex-wrap: wrap; /* Se ajusta en pantallas pequeñas */
+  justify-content: center; /* Centra los bloques */
+}
+
+/* --- Estilos Comunes de las Secciones --- */
+.song-section,
+.list-section {
+  /* Estilos visuales base */
+  background: rgba(18, 2, 29, 0.75);
+  backdrop-filter: blur(8px);
+  clip-path: polygon(0 15px, 15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px));
+  padding: 25px; 
+  
+  /* Transición para el hover */
+  transition: all 0.3s ease;
+}
+
+/* --- Sección del Reproductor (Principal) --- */
+.song-section {
+  /* Layout Fluido: Crece 1, Base 350px */
+  flex: 1 1 350px; 
+  max-width: 500px;
+  
+  /* Diferenciación y Animación: Magenta (Activo) */
+  animation: cyberPulseMagenta 4s ease-in-out infinite;
+}
+
+/* --- Sección de la Lista (Secundaria) --- */
+.list-section {
+  /* Layout Fluido: Crece 2, Base 400px */
+  flex: 2 1 400px; 
+  max-width: 700px;
+  
+  /* Diferenciación y Animación: Cian (Informativo) */
+  animation: cyberPulseCian 5s ease-in-out infinite;
+}
+
+/* --- Efectos Hover (Detienen la animación) --- */
+.song-section:hover,
+.list-section:hover {
+  animation: none; /* Pausa el pulso al pasar el mouse */
+  transform: translateY(-5px) scale(1.02);
+}
+
+.song-section:hover {
+  border: 1px solid #ff99ff; /* Borde más brillante */
+  box-shadow: 0 5px 25px rgba(255, 0, 225, 0.6);
+}
+
+.list-section:hover {
+  border: 1px solid #99ffff; /* Borde más brillante */
+  box-shadow: 0 5px 25px rgba(0, 255, 255, 0.6);
+}
+
+/* --- Keyframes para las Animaciones --- */
+
+/* Animación de pulso Magenta */
+@keyframes cyberPulseMagenta {
+  0%, 100% {
+    border: 1px solid #ff00ff;
+    box-shadow: 0 0 15px rgba(255, 0, 225, 0.4), 0 0 25px rgba(255, 0, 225, 0.3);
+  }
+  50% {
+    border: 1px solid #ff99ff;
+    box-shadow: 0 0 25px rgba(255, 0, 225, 0.7), 0 0 40px rgba(255, 0, 225, 0.5);
+  }
+}
+
+/* Animación de pulso Cian */
+@keyframes cyberPulseCian {
+  0%, 100% {
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 25px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    border: 1px solid #99ffff;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.5);
+  }
+}

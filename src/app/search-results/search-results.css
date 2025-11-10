@@ -1,0 +1,319 @@
+/* --- ESTILO RADICAL: "Holographic Frames" (Resultados de Búsqueda) --- */
+
+/* --- Contenedor Principal --- */
+.search-results-container {
+  padding: 30px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Consolas', 'Courier New', monospace;
+  
+  /* Fondo de cuadrícula cian */
+  background-image: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 25px 25px;
+  background-color: #0d000f; /* Fondo oscuro base */
+  padding-bottom: 150px;
+}
+
+/* --- Estado Vacío (Empty State) --- */
+.empty-state {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.empty-state h2 {
+  font-size: 32px;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  font-weight: 900;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.empty-state p {
+  font-size: 18px;
+  color: #00ffff;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* --- Estado de Carga (Loading) --- */
+.loading-state {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.spinner-large {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 255, 255, 0.3);
+  border-top: 5px solid #00ffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 24px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  font-size: 18px;
+  color: #00ffff;
+  margin: 0;
+}
+
+/* --- Cabecera de Resultados --- */
+.results-header {
+  margin-bottom: 32px;
+}
+
+.results-header h2 {
+  font-size: 28px;
+  color: #00ff00; /* Neón verde */
+  margin: 0;
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
+}
+
+/* --- Contenedor de Columnas --- */
+.columns-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Columna (Marco Holográfico) */
+.results-column {
+  background: none; /* Marco transparente */
+  backdrop-filter: none;
+  border-radius: 0;
+  border: 1px solid #ff00ff; /* Borde magenta */
+  
+  /* Clip-path de tarjeta */
+  clip-path: polygon(
+    0 15px, 15px 0, calc(100% - 15px) 0, 100% 15px, 
+    100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px)
+  );
+  
+  /* Sombra magenta */
+  box-shadow: 0 0 15px rgba(255, 0, 225, 0.4), 0 0 25px rgba(255, 0, 225, 0.3);
+  overflow: hidden;
+}
+
+/* Cabecera de Columna (Estilo Terminal) */
+.column-header {
+  padding: 20px;
+  background: none;
+  color: #00ffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(0, 255, 255, 0.3); /* Separador */
+}
+
+.column-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #00ffff; /* Neón cian */
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+.column-header .count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ff00ff; /* Neón magenta */
+  background: rgba(255, 0, 255, 0.1);
+  border: 1px solid rgba(255, 0, 255, 0.4);
+  padding: 3px 6px;
+}
+
+/* --- Lista de Items (Grid Vertical) --- */
+.items-list {
+  padding: 16px;
+  max-height: 600px;
+  overflow-y: auto;
+  
+  /* Distribución de Grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+/* Tarjeta de Resultado (Vertical) */
+.result-card {
+  display: flex;
+  flex-direction: column; /* Apilado vertical */
+  gap: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+
+  /* Estilo de "bloque de datos" */
+  background: rgba(18, 2, 29, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 15%);
+}
+
+.result-card:hover {
+  background-color: rgba(0, 255, 255, 0.15);
+  border-color: #00ffff;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Imagen de la Tarjeta */
+.card-image {
+  flex-shrink: 0;
+  width: 100%;
+  height: 0;
+  padding-top: 100%; /* Proporción 1:1 (cuadrado) */
+  border-radius: 0;
+  overflow: hidden;
+  background: #222;
+  position: relative;
+  
+  /* Clip-path por defecto para canción/álbum */
+  clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+}
+
+.card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #00ffff;
+}
+
+/* Estilo especial para Artista */
+.artist-image,
+.artist-image img,
+.artist-placeholder {
+  /* Clip-path de hexágono */
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Contenido de la Tarjeta */
+.card-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  position: relative; /* Para la etiqueta */
+}
+
+.card-title {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 15px; /* Espacio para la etiqueta */
+}
+
+.card-subtitle {
+  margin: 0 0 4px 0;
+  font-size: 13px;
+  color: #00ffff;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-detail {
+  margin: 0;
+  font-size: 12px;
+  color: #00ff00;
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: auto; /* Empuja al fondo */
+  padding-top: 4px;
+}
+
+/* --- Columna Vacía (dentro del marco) --- */
+.empty-column {
+  padding: 40px 20px;
+  text-align: center;
+  color: #00ffff;
+  opacity: 0.6;
+  background: rgba(0, 255, 255, 0.05); /* Fondo sutil */
+}
+
+/* --- Scrollbars --- */
+.items-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.items-list::-webkit-scrollbar-track {
+  background: rgba(17, 17, 17, 0.5); /* Sutil */
+}
+
+.items-list::-webkit-scrollbar-thumb {
+  background: #ff00ff;
+  border-radius: 0;
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.7);
+}
+
+.items-list::-webkit-scrollbar-thumb:hover {
+  background: #ff66ff;
+}
+
+/* --- ETIQUETAS AUTOMÁTICAS (Sin tocar HTML) --- 
+  Basado en el orden de las columnas 
+*/
+
+/* Estilo base de la etiqueta */
+.columns-container > .results-column .result-card .card-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #111;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 10px 3px 12px;
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  box-shadow: -2px 2px 5px rgba(0,0,0,0.4);
+}
+
+.columns-container > .results-column:nth-of-type(1) .result-card .card-content::before {
+  content: 'Canción';
+  background: #ff00ff;
+}
+
+/* Columna 2: Álbumes (Cian) */
+.columns-container > .results-column:nth-of-type(2) .result-card .card-content::before {
+  content: 'Álbum';
+  background: #00ffff;
+}
+
+/* Columna 3: Artistas (Verde) */
+.columns-container > .results-column:nth-of-type(3) .result-card .card-content::before {
+  content: 'Artista';
+  background: #00ff00;
+}

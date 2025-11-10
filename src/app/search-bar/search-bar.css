@@ -1,0 +1,208 @@
+/* --- Contenedor de Búsqueda --- */
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Consolas', 'Courier New', monospace;
+}
+
+/* --- Caja de Entrada de Búsqueda --- */
+.search-box {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  background: linear-gradient(145deg, #1a0221, #0d000f); /* Fondo oscuro */
+  color: #00ffff; /* Texto cian */
+  border: 1px solid #00ffff;
+  border-radius: 0;
+  outline: none;
+  transition: all 0.2s ease;
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.search-input:focus {
+  border-color: #ff00ff; /* Color de borde al hacer foco */
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.7), 0 0 25px rgba(255, 0, 255, 0.5); 
+}
+
+.search-input::placeholder {
+  color: #008080;
+  opacity: 0.7;
+}
+
+/* --- Resultados de Búsqueda --- */
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(18, 2, 29, 0.85); /* Fondo oscuro con transparencia */
+  backdrop-filter: blur(8px); 
+  border-radius: 0; 
+  border: 1px solid #ff00ff; /* Borde magenta */
+  box-shadow: 0 5px 20px rgba(255, 0, 225, 0.5);
+  clip-path: polygon(0 15px, 15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px));
+  margin-top: 14px;
+  max-height: 500px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* --- Estados de Carga --- */
+.loading {
+  padding: 20px;
+  text-align: center;
+  color: #00ffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 255, 255, 0.3);
+  border-top: 3px solid #00ffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Mensaje de Error --- */
+.error-message {
+  padding: 20px;
+  text-align: center;
+  color: #ff00ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* --- Elementos de Resultado --- */
+.result-section {
+  border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+}
+
+.result-section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  padding: 12px 20px 8px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #00ff00;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.result-item:hover {
+  background-color: rgba(255, 0, 255, 0.15);
+}
+
+/* --- Imágenes de Resultados --- */
+.result-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  object-fit: cover;
+  margin-right: 12px;
+  background: #222;
+  clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+}
+
+.result-img-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  margin-right: 12px;
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #00ffff;
+  clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+}
+
+.artist-img {
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* --- Información de Resultados --- */
+.result-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.result-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+  transition: all 0.2s;
+}
+
+.result-item:hover .result-name {
+  color: #ff00ff;
+}
+
+.result-item.active .result-name {
+  color: #ff00ff;
+  font-weight: 900;
+}
+
+.result-artist {
+  font-size: 13px;
+  color: #00ffff;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-results::-webkit-scrollbar {
+  width: 10px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: #111;
+  border-radius: 0;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: #ff00ff;
+  border-radius: 0;
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.7);
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: #ff66ff;
+}

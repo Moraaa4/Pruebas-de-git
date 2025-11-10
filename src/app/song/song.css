@@ -1,0 +1,140 @@
+/* --- REPRODUCTOR (Song Container) --- */
+.song-wrapper {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;  /* Cambio de fuente */
+}
+
+/* CARGANDO */
+.loading-container {
+  background: rgba(5, 0, 19, 0.7);  /* Color de fondo más oscuro */
+  backdrop-filter: blur(10px); 
+  border-radius: 12px;  /* Para un borde más suave */
+  border: 1px solid #ff33cc;  /* Cambio de color de borde */
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.4), 0 0 30px rgba(255, 0, 255, 0.2);
+  padding: 50px 30px;
+  text-align: center;
+}
+
+/* Spinner */
+.spinner-large {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 0, 255, 0.3);
+  border-top: 4px solid #ff66cc;  /* Cambio de color de spinner */
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  margin: 0 auto 20px;
+}
+
+/* Error */
+.error-container {
+  background: rgba(5, 0, 19, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid #ff33cc;
+  padding: 40px 25px;
+  text-align: center;
+}
+
+/* Botón de reintento */
+.retry-button {
+  padding: 14px 35px;
+  background: linear-gradient(135deg, #ff33cc, #8b00b3); /* Gradiente diferente */
+  color: #FFFFFF;
+  border: 1px solid #ff33cc;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;  /* Bordes redondeados */
+}
+
+/* --- REPRODUCTOR --- */
+.song-container {
+  width: 100%;
+}
+
+/* Card Principal (Horizontal Layout) */
+.song-card {
+  background: rgba(15, 3, 27, 0.85); /* Fondo más oscuro */
+  border-radius: 15px;  /* Bordes redondeados */
+  border: 2px solid #ff33cc;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.5), 0 0 35px rgba(255, 0, 225, 0.3); /* Sombra más sutil */
+}
+
+/* Efecto Hover */
+.song-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 6px 40px rgba(255, 0, 255, 0.7);
+}
+
+/* Imagen del Álbum */
+.song-image-container {
+  position: relative;
+  overflow: hidden;
+  width: 160px;  /* Imagen un poco más grande */
+  height: 160px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 3px solid #ff33cc;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 25px rgba(255, 0, 255, 0.4);  /* Sombra intensa */
+}
+
+/* Imagen giratoria */
+.song-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  animation: discSpin 12s linear infinite;  /* Animación más lenta */
+}
+
+/* Animación de Disco Giratorio */
+@keyframes discSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Detalles de la Canción */
+.song-details {
+  padding-left: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.song-title {
+  font-size: 24px;  /* Título más grande */
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.song-artist {
+  font-size: 18px;  /* Tamaño de texto más grande */
+  color: #00e5ff;  /* Color azul brillante */
+  margin-top: 5px;
+}
+
+.song-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.album-name {
+  font-size: 14px;
+  color: #33cc33;  /* Color verde más intenso */
+}
+
+.duration {
+  font-size: 14px;
+  color: #33cc33;
+  font-weight: 500;
+}
